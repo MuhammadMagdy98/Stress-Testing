@@ -5,20 +5,18 @@ os.system('g++ fast_solution.cpp -o fast_solution')
 os.system('g++ generator.cpp -o generator')
 t = 1
 
-def compare(s1, s2):
-    x = " ".join(s1.split())
-    y = " ".join(s2.split())
-    return x == y
+def compare(s1, s2, input_test):
+    return s1 == s2
 while 1:
     
-    os.system('generator.exe > input.txt')
-    os.system('bruteforce.exe < input.txt > bruteforce.txt')
-    os.system('fast_solution.exe < input.txt > fast_solution.txt')
+    os.system('./generator > in.txt')
+    os.system('./bruteforce < in.txt > bruteforce.txt')
+    os.system('./fast_solution< in.txt > fast_solution.txt')
     correct_output = open('bruteforce.txt').read()
     wrong_output = open('fast_solution.txt').read()
-    counter_test = open('input.txt').read()
+    counter_test = open('in.txt').read()
 
-    if not compare(wrong_output, correct_output):
+    if not compare(wrong_output, correct_output, counter_test):
         print ('WA')
         print('counter test case')
         
